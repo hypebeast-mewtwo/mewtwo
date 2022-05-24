@@ -1,2 +1,2 @@
 # mewtoo
-Decentralized marketplace for hypebeast apparel using crypto
+Decentralized marketplace for hypebeast apparel
