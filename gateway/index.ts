@@ -22,5 +22,5 @@ app.use('/user', proxy('http://localhost:3001'));
 // });
 
 app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
+  console.log(`Gateway listening on port ${PORT}`);
 });
