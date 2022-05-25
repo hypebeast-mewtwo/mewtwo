@@ -1,4 +1,11 @@
 {
+  "name": "mewtwo-hypebeast",
+  "version": "1.0.0",
+  "description": "ecommerce for hypebeasts with crypto",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack"
+  },
   "dependencies": {
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
