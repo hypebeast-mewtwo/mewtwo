@@ -4,7 +4,8 @@
   "description": "ecommerce for hypebeasts with crypto",
   "main": "index.js",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "start": "webpack serve --mode development"
   },
   "dependencies": {
     "react": "^18.1.0",
@@ -17,6 +18,7 @@
     "babel-loader": "^8.2.5",
     "html-webpack-plugin": "^5.5.0",
     "webpack": "^5.72.1",
-    "webpack-cli": "^4.9.2"
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.0"
   }
 }
