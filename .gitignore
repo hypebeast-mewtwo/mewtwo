@@ -1,0 +1,5 @@
+dist
+build
+.DS_store
+node_modules
+.env
