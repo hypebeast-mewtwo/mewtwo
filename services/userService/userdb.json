@@ -1,0 +1,7 @@
+{
+RDS_HOSTNAME=team-avatar.cl255o0mkcla.us-east-2.rds.amazonaws.com
+RDS_USERNAME=airbender
+RDS_PASSWORD=XzMHtcnSfbUnT2RA
+RDS_PORT=5432
+RDS_DBNAME=teamavatar
+}

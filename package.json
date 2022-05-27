@@ -7,7 +7,7 @@
     "start:gateway": "nodemon ./gateway/index.ts",
     "start:user": "nodemon ./services/userService/userServer.ts",
     "start:dev": "webpack serve --mode development",
-    "start": "concurrently npm:start:*", 
+    "start": "concurrently npm:start:*",
     "build": "webpack"
   },
   "repository": {
