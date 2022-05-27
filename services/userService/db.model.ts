@@ -1,16 +1,19 @@
+const userdb = require('./userdb.json');
+
 const { Pool } = require('pg');
 
-require('dotenv').config();
-
 const databaseParams = {
-  user: process.env.RDS_USERNAME,
-  host: process.env.RDS_HOSTNAME,
-  database: process.env.RDS_DBNAME,
-  password: process.env.RDS_PASSWORD,
-  port: process.env.RDS_PORT,
+  user: userdb.RDS_USERNAME,
+  host: userdb.RDS_HOSTNAME,
+  database: userdb.RDS_DBNAME,
+  password: userdb.RDS_PASSWORD,
+  port: userdb.RDS_PORT,
 };
 
 const pool = new Pool(databaseParams);
+pool.on('connect', () => {
+  console.log('connected to userdb');
+});
 
 module.exports = {
   query: (text: String, params: String, callback: String) => {
