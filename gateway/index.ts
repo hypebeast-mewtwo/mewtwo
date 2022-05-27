@@ -1,5 +1,5 @@
 import express, { Request, Response, NextFunction } from 'express';
-import proxy from 'express-http-proxy'
+import proxy from 'express-http-proxy';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,9 +13,13 @@ app.use('/user', proxy('http://localhost:3001'));
 //   res.send('inventory');
 // });
 
-// app.use('/reviews', (req: Request, res: Response, next: NextFunction) => {
-//   res.send('reviews');
-// });
+app.use(
+  '/reviews',
+  proxy(() => {
+    console.log(`Proxying to reviews microservice`)
+    return 'http://localhost:3003';
+  })
+);
 
 // app.use('/payment', (req: Request, res: Response, next: NextFunction) => {
 //   res.send('payment');
