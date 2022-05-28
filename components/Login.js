@@ -1,9 +1,12 @@
 import React from 'react';
 import { GoogleLogin } from 'react-google-login';
+import userdb from './userdb.json';
 
-const responseGoogle = (response) => {
-  console.log(response);
-};
+const clientId = 'userdb.GOOGLE_CLIENT_ID';
+
+// const responseGoogle = (response) => {
+//   console.log(response);
+// };
 
 export default function Login() {
   return (
@@ -15,6 +18,8 @@ export default function Login() {
         buttonText='Login'
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
+        cookiePolicy={'single_host_origin'}
+        isSignedIn={true}
       />
     </div>
   );

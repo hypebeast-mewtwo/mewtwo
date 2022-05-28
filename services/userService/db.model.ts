@@ -1,4 +1,4 @@
-const userdb = require('./userdb.json');
+import userdb from './userdb.json';
 
 const { Pool } = require('pg');
 
