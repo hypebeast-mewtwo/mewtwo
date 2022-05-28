@@ -16,6 +16,7 @@ pool.on('connect', () => {
 });
 
 module.exports = {
+  databaseParams,
   query: (text: String, params: String, callback: String) => {
     console.log('executed query', text);
     return pool.query(text, params, callback);
