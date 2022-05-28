@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:reviews": "nodemon ./reviewServer.ts"
+    "start:review": "nodemon ./reviewServer.ts"
   },
   "keywords": [],
   "author": "",
