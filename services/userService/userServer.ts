@@ -15,12 +15,12 @@ app.use('/', (req, res, next) => {
   res.send('From user microservices');
 });
 
-const users = [];
-// function addUser(array:[], item:String) {
-//   const i = array.findIndex((_item) => _item.email === item.email);
-//   if (i > -1) array[i] = item;
-//   else array.push(item);
-// }
+const users: [] = [];
+function addUser(array: [], item: String) {
+  const i = array.findIndex((_item) => _item.email === item.email);
+  if (i > -1) array[i] = item;
+  else array.push(item);
+}
 
 app.post('/api/google-auth', async (req, res) => {
   const { token } = req.body;
@@ -29,6 +29,9 @@ app.post('/api/google-auth', async (req, res) => {
     audience: userdb.GOOGLE_CLIENT_ID,
   });
   const { name, email, picture } = ticket.getPayload();
+  addUser(users, { name, email, picture });
+  res.status(201);
+  res.json({ name, email, picture });
 });
 
 app.listen(PORT, () => {
