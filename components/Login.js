@@ -2,22 +2,30 @@ import React from 'react';
 import { GoogleLogin } from 'react-google-login';
 import userdb from './userdb.json';
 
-const clientId = 'userdb.GOOGLE_CLIENT_ID';
+const clientId = userdb.GOOGLE_CLIENT_ID;
 
 // const responseGoogle = (response) => {
 //   console.log(response);
 // };
 
 export default function Login() {
+  const onSuccess = (res) => {
+    console.log('[login success] currentUser:', res.profileObj);
+  };
+
+  const onFailure = (res) => {
+    console.log('[login failed] res:', res);
+  };
+
   return (
     <div>
       <h1>Login please</h1>
 
       <GoogleLogin
-        clientId='214015961785-plma5hibritagflmrtnh58l76j58bi6f.apps.googleusercontent.com'
+        clientId={clientId}
         buttonText='Login'
-        onSuccess={responseGoogle}
-        onFailure={responseGoogle}
+        onSuccess={onSuccess}
+        onFailure={onFailure}
         cookiePolicy={'single_host_origin'}
         isSignedIn={true}
       />
