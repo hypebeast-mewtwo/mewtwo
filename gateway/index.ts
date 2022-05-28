@@ -1,5 +1,5 @@
 import express, { Request, Response, NextFunction } from 'express';
-import proxy from 'express-http-proxy'
+import proxy from 'express-http-proxy';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -17,9 +17,7 @@ app.use('/user', proxy('http://localhost:3001'));
 //   res.send('reviews');
 // });
 
-// app.use('/payment', (req: Request, res: Response, next: NextFunction) => {
-//   res.send('payment');
-// });
+app.use('/payment', proxy('http://localhost:3004'));
 
 app.listen(PORT, () => {
   console.log(`Gateway listening on port ${PORT}`);
