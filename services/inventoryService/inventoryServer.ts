@@ -7,7 +7,7 @@ const PORT = process.env.INVENTORYPORT || 3002;
 
 app.use(express.json());
 
-app.use('/inventory', inventoryRouter);
+app.use('/', inventoryRouter);
 
 app.use('/', (_req, res) => {
   res.send('testing route from inventory service');

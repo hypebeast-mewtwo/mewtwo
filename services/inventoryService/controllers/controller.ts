@@ -5,16 +5,24 @@ interface invControllerT {
   newItem: RequestHandler;
   getAllItems: RequestHandler;
   getOneItem: RequestHandler;
+  updateItem: RequestHandler;
 }
 
 const inventoryController: invControllerT = <invControllerT>{};
 
-inventoryController.newItem = async (req, _res, next) => {
+inventoryController.newItem = async (req, res, next) => {
   const { name, quantity, price, description, image } = req.body;
 
   try {
-    await dbINV.create({ name, quantity, price, description, image });
+    const newItem = await dbINV.create({
+      name,
+      quantity,
+      price,
+      description,
+      image,
+    });
 
+    res.locals.newItem = newItem;
     return next();
   } catch (err) {
     return next({
@@ -53,6 +61,28 @@ inventoryController.getOneItem = async (req, res, next) => {
   } catch (err) {
     return next({
       log: `Error in Inventory microservice with inventoryController.getOneItems Error: ${err}`,
+      message: {
+        err: 'Error with Controller in Inventory MS. Check server logs for details',
+      },
+    });
+  }
+};
+
+inventoryController.updateItem = async (req, res, next) => {
+  const { name, quantity, price, description, image } = req.body;
+  const { id } = req.params;
+
+  try {
+    const updatedItem = await dbINV.findOneAndUpdate(
+      { id },
+      { name, quantity, price, description, image }
+    );
+
+    res.locals.updatedItem = updatedItem;
+    return next();
+  } catch (err) {
+    return next({
+      log: `Error in Inventory microservice with inventoryController.updateItem Error: ${err}`,
       message: {
         err: 'Error with Controller in Inventory MS. Check server logs for details',
       },
