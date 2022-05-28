@@ -1,20 +1,17 @@
 import dbINV from './../model/inventory';
-import { Request, Response, NextFunction } from 'express';
+import { RequestHandler } from 'express';
 
 interface invControllerT {
-  newItem?: any;
-  getAllItems?: any;
+  newItem: RequestHandler;
+  getAllItems: RequestHandler;
+  getOneItem: RequestHandler;
 }
 
-const inventoryController: invControllerT = {};
+const inventoryController: invControllerT = <invControllerT>{};
 
-inventoryController.newItem = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+inventoryController.newItem = async (req, _res, next) => {
   const { name, quantity, price, description, image } = req.body;
-  // console.log(req.body);
+
   try {
     await dbINV.create({ name, quantity, price, description, image });
 
@@ -29,19 +26,33 @@ inventoryController.newItem = async (
   }
 };
 
-inventoryController.getAllItems = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+inventoryController.getAllItems = async (req, res, next) => {
   try {
     const items = await dbINV.find();
-
     res.locals.items = items;
+
     return next();
   } catch (err) {
     return next({
       log: `Error in Inventory microservice with inventoryController.getAllItems Error: ${err}`,
+      message: {
+        err: 'Error with Controller in Inventory MS. Check server logs for details',
+      },
+    });
+  }
+};
+
+inventoryController.getOneItem = async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    const item = await dbINV.findOne({ id });
+    res.locals.item = item;
+
+    return next();
+  } catch (err) {
+    return next({
+      log: `Error in Inventory microservice with inventoryController.getOneItems Error: ${err}`,
       message: {
         err: 'Error with Controller in Inventory MS. Check server logs for details',
       },

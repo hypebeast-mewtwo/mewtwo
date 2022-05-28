@@ -3,16 +3,18 @@ import inventoryController from '../controllers/controller';
 
 const router = express.Router();
 
-const { newItem } = inventoryController;
+const { newItem, getAllItems, getOneItem } = inventoryController;
 
-router.get('/:id', (req, res) => {
-  console.log(req.params);
-  res.send(req.originalUrl);
+router.get('/items', getAllItems, (req, res) => {
+  return res.status(200).json({ items: res.locals.items });
 });
 
-router.post('/newItem', newItem, (req, res) => {
-  // console.log(req.body);
-  res.status(200).json({ message: 'added new item' });
+router.get('/:id', getOneItem, (req, res) => {
+  return res.status(200).json({ item: res.locals.item });
+});
+
+router.post('/newItem', newItem, (req, res, next) => {
+  return res.status(200).json({ message: 'added new item' });
 });
 
 export default router;
