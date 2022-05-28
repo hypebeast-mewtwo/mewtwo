@@ -1,6 +1,10 @@
 import express from 'express';
-import { query as db } from './models/reviewModels';
+import { Database as db } from './models/reviewModels';
 import 'dotenv/config';
+
+// (async function dbQuery() {
+//     console.log(await db.query(`SELECT * FROM reviews`))
+// })()
 
 const PORT = process.env.REVIEWS_PORT || 3003;
 const app = express();
