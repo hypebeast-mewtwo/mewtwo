@@ -1,34 +1,66 @@
 import { Pool, QueryArrayResult, QueryResult } from 'pg';
-import 'dotenv/config';
 
 type Callback<T> = (err: Error, result: QueryResult<T[]>) => T[];
 
 export const PG_URI = process.env.PG_URI;
 
-export class Database {
-  public static URI: string | undefined = process.env.PG_URI;
-  private static dbInstance: Pool;
+const pool = new Pool({
+  connectionString: PG_URI,
+});
 
-  static get instance(): Pool {
-    if (!Database.dbInstance) {
-      Database.dbInstance = new Pool({
-        connectionString: Database.URI,
-      }).on('connect', () => {
-        console.log('connected to database');
-      });
-    }
-    return Database.dbInstance;
-  }
+pool.on('connect', () => {
+  console.log('connected to database');
+});
 
-  static query(
+export default {
+  query: (
     text: string,
     params?: string[],
     callback?: Callback<any>
-  ): void | Promise<QueryResult<any>> {
-    if (!params || !callback) {
-      console.log('executed query', text);
-      return Database.instance.query(text);
+  ): void | Promise<QueryArrayResult<any>> => {
+    console.log('executing query', text);
+    if (params && callback) {
+      return pool.query(text, params, callback);
     }
-    return Database.instance.query(text, params, callback);
-  }
-}
+
+    if (!callback) {
+      return pool.query(text, params);
+    }
+
+    return pool.query(text);
+  },
+};
+
+// export class Database {
+//   public static URI: string | undefined = PG_URI;
+//   private static dbInstance: Pool;
+
+//   static get instance(): Pool {
+//     if (!Database.URI) {
+//       console.log(Database.URI)
+//       throw new Error('Error in database connection: No URI provided');
+//     }
+
+//     if (!Database.dbInstance) {
+//       Database.dbInstance = new Pool({
+//         connectionString: Database.URI,
+//       }).on('connect', () => {
+//         console.log('connected to database');
+//       });
+//     }
+//     return Database.dbInstance;
+//   }
+
+//   static query(
+//     text: string,
+//     params?: string[],
+//     callback?: Callback<any>
+//   ): void | Promise<QueryResult<any>> {
+//     const db = Database.instance
+//     console.log('executing query', text);
+//     if (!params || !callback) {
+//       return db.query(text);
+//     }
+//     return db.query(text, params);
+//   }
+// }
