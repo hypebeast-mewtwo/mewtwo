@@ -16,6 +16,15 @@ app.use('/', (req, res, next) => {
   res.send('From user microservices');
 });
 
+app.post('/api/google-auth', async (req, res) => {
+  const { token } = req.body;
+  const ticket = await client.verifyIdToken({
+    idToken: token,
+    audience: userdb.GOOGLE_CLIENT_ID,
+  });
+  const { name, email, picture } = ticket.getPayload();
+});
+
 app.listen(PORT, () => {
   console.log(`User Service Listening on Port: ${PORT}`);
 });
