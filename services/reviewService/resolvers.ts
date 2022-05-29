@@ -27,6 +27,36 @@ export const resolvers = {
         );
       }
     },
+
+    getReviewsByProductName: async (parent: any, args: {productName: string}) => {
+      try {
+        const { productName } = args
+        const { rows } = (await db.query(
+          QueryStrings.GET_REVIEWS_BY_PRODUCT_NAME, [ productName ]
+        )) as unknown as QueryArrayResult;
+
+        return rows;
+      } catch (e) {
+        throw new Error(
+          `Error in getAllReviews Resolver: Unable to query reviews`
+        );
+      }
+    },
+
+    getReviewsByProductId: async (parent: any, args: {productId: number}) => {
+      try {
+        const { productId } = args
+        const { rows } = (await db.query(
+          QueryStrings.GET_REVIEWS_BY_PRODUCT_ID, [ productId.toString() ]
+        )) as unknown as QueryArrayResult;
+
+        return rows;
+      } catch (e) {
+        throw new Error(
+          `Error in getAllReviews Resolver: Unable to query reviews`
+        );
+      }
+    },
   },
 
   Mutation: {

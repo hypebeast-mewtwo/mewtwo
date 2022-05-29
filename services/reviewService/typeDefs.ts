@@ -3,6 +3,8 @@ import { gql } from 'apollo-server-express';
 export const typeDefs = gql`
   type Query {
     getAllReviews: [Review]!
+    getReviewsByProductName(productName: String!): [Review]!
+    getReviewsByProductId(productId: Int!): [Review]!
   }
 
   type Mutation {
