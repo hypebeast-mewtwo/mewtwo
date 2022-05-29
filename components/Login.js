@@ -4,10 +4,6 @@ import userdb from './userdb.json';
 
 const clientId = userdb.GOOGLE_CLIENT_ID;
 
-// const responseGoogle = (response) => {
-//   console.log(response);
-// };
-
 export default function Login() {
   const onSuccess = (res) => {
     console.log('[login success] currentUser:', res.profileObj);
