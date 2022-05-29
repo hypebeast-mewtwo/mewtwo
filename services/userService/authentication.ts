@@ -1,3 +1,4 @@
+import { InterfaceDeclaration } from 'typescript';
 import userdb from './userdb.json';
 const { OAuth2Client } = require('google-auth-library');
 
@@ -10,7 +11,7 @@ let session = require('express-session');
 const pool = new Pool(configDB);
 
 const authentication = {
-  verified: async (req, res, next) => {
+  verified: async (req: any, res: Express.Response, next: any) => {
     const { token } = req.body;
     const ticket = await client.verifyToken({
       idToken: token,
