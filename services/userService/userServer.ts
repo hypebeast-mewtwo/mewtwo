@@ -1,6 +1,6 @@
 import express, { Request, Response, NextFunction } from 'express';
-
-const authentication = require('./authentication');
+import authentication from './authentication';
+import userController from './controllers/userController';
 
 const app = express();
 const PORT = process.env.USERPORT || 3001;
@@ -14,7 +14,7 @@ app.use('/', (req, res, next) => {
 app.post(
   '/api/google-auth',
   authentication.verified,
-  authentication.getUserInfo,
+  userController.verifyUser,
   (req, res) => {
     const { userId } = res.locals;
     res.cookie('userId', userId, {

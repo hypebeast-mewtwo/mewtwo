@@ -15,4 +15,4 @@ try {
 
 };
 
-module.exports = userController;
+export default userController;

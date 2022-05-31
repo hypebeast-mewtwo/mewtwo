@@ -34,4 +34,4 @@ const authentication = {
   },
 };
 
-module.exports = authentication;
+export default authentication;
