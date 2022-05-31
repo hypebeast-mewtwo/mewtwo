@@ -23,7 +23,7 @@ const authentication = {
       return next({
         log: 'error verifying google id',
         message: {
-          err: `error received verifying google id ${err}`,
+          // err: `error received verifying google id ${err}`,
         },
       });
     }
