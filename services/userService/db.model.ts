@@ -1,11 +1,11 @@
 const { Pool } = require('pg');
 
 const databaseParams = {
-  username: process.env.RDS_USERNAME,
-  hostname: process.env.RDS_HOSTNAME,
-  dbname: process.env.RDS_DBNAME,
-  password: process.env.RDS_PASSWORD,
-  port: process.env.RDS_PORT,
+  username: process.env.USER_RDS_USERNAME,
+  hostname: process.env.USER_RDS_HOSTNAME,
+  dbname: process.env.USER_RDS_DBNAME,
+  password: process.env.USER_RDS_PASSWORD,
+  port: process.env.USER_RDS_PORT,
 };
 
 const pool = new Pool(databaseParams);

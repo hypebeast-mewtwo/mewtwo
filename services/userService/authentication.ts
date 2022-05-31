@@ -6,7 +6,7 @@ const { OAuth2Client } = require('google-auth-library');
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 const { Pool } = require('pg');
-const configDB = process.env.RDS_HOSTNAME;
+const configDB = process.env.USER_RDS_HOSTNAME;
 let session = require('express-session');
 
 const pool = new Pool(configDB);
