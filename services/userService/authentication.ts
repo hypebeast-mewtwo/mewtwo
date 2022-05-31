@@ -1,13 +1,12 @@
 import { InterfaceDeclaration } from 'typescript';
 import express, { Request, Response, NextFunction } from 'express';
-import userdb from './userdb.json';
 
 const { OAuth2Client } = require('google-auth-library');
 
-const client = new OAuth2Client(userdb.GOOGLE_CLIENT_ID);
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 const { Pool } = require('pg');
-const configDB = { userdb: userdb.RDS_HOSTNAME };
+const configDB = process.env.RDS_HOSTNAME;
 let session = require('express-session');
 
 const pool = new Pool(configDB);
@@ -17,7 +16,7 @@ const authentication = {
     const { token } = req.body;
     const ticket = await client.verifyToken({
       idToken: token,
-      audience: userdb.GOOGLE_CLIENT_ID,
+      audience: process.env.GOOGLE_CLIENT_ID,
     });
     if (!token) {
       return next({
