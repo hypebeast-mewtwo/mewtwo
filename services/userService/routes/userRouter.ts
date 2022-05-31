@@ -1,8 +1,13 @@
-import express from 'express';
-import userController from '../controllers/userController';
+// import express from 'express';
 
-const userRouter = express.Router();
+// import userController from '../controllers/userController';
 
-//  postUserInfo: async (req, res, next) => {
+// const userRouter = express.Router();
 
-// },
+// userRouter.post('/', newUser, (req, res) => {
+//     return res.status(200).json(userInfo)
+// })
+
+// //  postUserInfo: async (req, res, next) => {
+
+// // },

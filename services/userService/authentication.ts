@@ -1,6 +1,7 @@
 import { InterfaceDeclaration } from 'typescript';
 import express, { Request, Response, NextFunction } from 'express';
 import userdb from './userdb.json';
+
 const { OAuth2Client } = require('google-auth-library');
 
 const client = new OAuth2Client(userdb.GOOGLE_CLIENT_ID);
@@ -27,14 +28,10 @@ const authentication = {
       });
     }
     const { name, email, picture } = ticket.getPayload();
-    const userInfo = [];
-    res.locals.email = email;
-    res.locals.name = name;
+    // const userInfo = [name, email, picture];
 
-    userInfo[0] = email;
-    userInfo[1] = name;
     // pool.query();
   },
 };
 
-export default authentication;
+module.exports = authentication;
