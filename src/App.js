@@ -14,7 +14,6 @@ export default function App() {
         }}
       >
         <Link to='/login'>Login</Link>
-        <Link to='/logout'>Logout</Link>
       </nav>
       <div>
         <Link to='/products'>Products</Link>
