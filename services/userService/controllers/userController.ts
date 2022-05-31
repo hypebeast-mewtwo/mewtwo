@@ -9,7 +9,7 @@ interface controllerUser {
 const userController: controllerUser = <controllerUser>{};
 
 userController.verifyUser = async (req, res, next) => {
-  const { name, email, picture, userId } = req.body;
+  const { name } = req.body;
   const sql = `SELECT name FROM user WHERE name = '${name}';`;
 
   db.query(sql)

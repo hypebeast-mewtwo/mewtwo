@@ -3,6 +3,8 @@ import authentication from './authentication';
 import userController from './controllers/userController';
 
 const app = express();
+require('dotenv').config();
+
 const PORT = process.env.USERPORT || 3001;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

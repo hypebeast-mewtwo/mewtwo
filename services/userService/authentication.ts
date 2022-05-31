@@ -1,13 +1,14 @@
 import { InterfaceDeclaration } from 'typescript';
 import express, { Request, Response, NextFunction } from 'express';
+import 'dotenv/config';
+import { configDB } from './db.model';
 
 const { OAuth2Client } = require('google-auth-library');
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 const { Pool } = require('pg');
-const configDB = process.env.USER_RDS_HOSTNAME;
-let session = require('express-session');
+// let session = require('express-session');
 
 const pool = new Pool(configDB);
 

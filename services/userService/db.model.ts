@@ -1,6 +1,5 @@
 import { Pool, QueryResult } from 'pg';
-
-require('dotenv').config();
+import 'dotenv/config';
 
 type Callback<T> = (err: Error, result: QueryResult<T[]>) => T[];
 
@@ -14,13 +13,24 @@ const databaseParams = {
   port: port,
 };
 
-const pool = new Pool(databaseParams);
+export const configDB = {
+  connectionString:
+    databaseParams.dbname +
+    '://' +
+    databaseParams.username +
+    ':' +
+    databaseParams.password +
+    '@' +
+    databaseParams.hostname,
+};
+const pool = new Pool(configDB);
 
 pool.on('connect', () => {
   console.log('connected to userdb');
 });
 
 module.exports = {
+  configDB,
   databaseParams,
   query: (text: string, params: any, callback: any) => {
     console.log('executed query', text);
