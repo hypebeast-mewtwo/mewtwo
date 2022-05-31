@@ -22,5 +22,8 @@
     "ts-node": "^10.8.0",
     "tsc": "^2.0.4",
     "typescript": "^4.7.2"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.6.5"
   }
 }
