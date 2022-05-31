@@ -30,7 +30,7 @@ const authentication = {
     const { name, email, picture } = ticket.getPayload();
     // const userInfo = [name, email, picture];
 
-    // pool.query();
+    pool.query();
   },
 };
 
