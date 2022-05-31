@@ -1,13 +1,11 @@
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
+
 const authentication = require('./authentication');
-const sessionClear = require('./sessionClear.ts');
 
 const app = express();
 const PORT = process.env.USERPORT || 3001;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-sessionClear();
 
 app.use('/', (req, res, next) => {
   res.send('From user microservices');
