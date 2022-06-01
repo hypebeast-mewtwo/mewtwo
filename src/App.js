@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
-import Products from '../components/Products';
+import Products from './components/Products';
 
 export default function App() {
   return (
