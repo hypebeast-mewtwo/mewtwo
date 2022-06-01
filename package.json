@@ -6,7 +6,7 @@
   "scripts": {
     "start:gateway": "nodemon ./gateway/index.ts",
     "start:user": "nodemon ./services/userService/userServer.ts",
-    "start:inventory":"nodemon ./services/inventoryService/InventoryServer.ts",
+    "start:inventory": "nodemon ./services/inventoryService/InventoryServer.ts",
     "start:dev": "webpack serve --mode development",
     "start:review": "nodemon ./services/reviewService/reviewServer.ts",
     "start": "concurrently npm:start:*",
@@ -45,6 +45,7 @@
     "@babel/preset-env": "^7.18.0",
     "@babel/preset-react": "^7.17.12",
     "babel-loader": "^8.2.5",
+    "concurrently": "^7.2.1",
     "html-webpack-plugin": "^5.5.0",
     "nodemon": "^2.0.16",
     "ts-node": "^10.8.0",
