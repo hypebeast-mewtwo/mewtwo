@@ -17,6 +17,11 @@ module.exports = {
           },
         },
       },
+      {
+        test: /.(css|scss)$/,
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader'],
+      },
     ],
   },
   plugins: [
@@ -24,4 +29,13 @@ module.exports = {
       template: './src/index.html',
     }),
   ],
+  devServer: {
+    static: {
+      directory: path.join(__dirname, './dist'),
+    },
+    proxy: {
+      '/': 'http://localhost:3000',
+    },
+    historyApiFallback: true,
+  },
 };
