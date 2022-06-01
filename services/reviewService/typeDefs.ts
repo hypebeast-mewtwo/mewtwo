@@ -2,6 +2,7 @@ import { gql } from 'apollo-server-express';
 
 export const typeDefs = gql`
   type Query {
+    helloWorld: String!
     getAllReviews: [Review]!
     getReviewsByProductName(productName: String!): [Review]!
     getReviewsByProductId(productId: Int!): [Review]!

@@ -14,6 +14,8 @@ interface IReviewInput {
 
 export const resolvers = {
   Query: {
+    helloWorld: () => 'Hello World!',
+    
     getAllReviews: async () => {
       try {
         const { rows } = (await db.query(
