@@ -9,13 +9,21 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/user', proxy('http://localhost:3001'));
 
-// app.use('/inventory', (req: Request, res: Response, next: NextFunction) => {
-//   res.send('inventory');
-// });
+app.use(
+  '/inventory',
+  proxy((req) => {
+    console.log('proxy to Inventory MS ');
+    return 'http://localhost:3002';
+  })
+);
 
-// app.use('/reviews', (req: Request, res: Response, next: NextFunction) => {
-//   res.send('reviews');
-// });
+app.use(
+  '/reviews',
+  proxy(() => {
+    console.log(`Proxying to reviews microservice`)
+    return 'http://localhost:3003';
+  })
+);
 
 app.use('/payment', proxy('http://localhost:3004'));
 
