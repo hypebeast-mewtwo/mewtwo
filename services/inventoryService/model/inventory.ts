@@ -15,6 +15,7 @@ interface InventoryT {
   price: Number;
   description: string;
   image: string;
+  redirect: string;
 }
 
 const inventorySchema = new Schema<InventoryT>({
@@ -23,6 +24,7 @@ const inventorySchema = new Schema<InventoryT>({
   price: { type: Number, required: true },
   description: { type: String, default: '' },
   image: { type: String, required: true },
+  redirect: { type: String, required: true },
 });
 
 const Inventory = model<InventoryT>('Inventory', inventorySchema);

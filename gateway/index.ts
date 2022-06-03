@@ -20,7 +20,7 @@ app.use(
 app.use(
   '/reviews',
   proxy(() => {
-    console.log(`Proxying to reviews microservice`)
+    console.log(`Proxying to reviews microservice`);
     return 'http://localhost:3003';
   })
 );

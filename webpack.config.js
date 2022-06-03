@@ -26,16 +26,22 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
+      filename: './index.html',
       template: './src/index.html',
     }),
   ],
   devServer: {
     static: {
       directory: path.join(__dirname, './dist'),
+      publicPath: '/dist',
     },
     proxy: {
-      '/': 'http://localhost:3000',
+      '/api/**': {
+        target: 'http://localhost:3000',
+        pathRewrite: { '^/api': '' },
+      },
     },
     historyApiFallback: true,
+    hot: true,
   },
 };

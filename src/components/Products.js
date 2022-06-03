@@ -5,7 +5,7 @@ import { Card, Row, Col, Container, Button } from 'react-bootstrap';
 export default function Products() {
   const [product, setProduct] = useState([]);
   async function getProducts() {
-    const { data } = await axios.get('/inventory/items');
+    const { data } = await axios.get('/api/inventory/items');
     setProduct(() => [...data.items]);
   }
   useEffect(() => {
@@ -23,7 +23,9 @@ export default function Products() {
             <Card.Body>
               <Card.Title>{num.name}</Card.Title>
               <Card.Text>${num.price}</Card.Text>
-              <Button variant='primary'>Go somewhere</Button>
+              <Button href={num.redirect} target='_blank'>
+                More Info
+              </Button>
             </Card.Body>
           </Card>
         ))}

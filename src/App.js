@@ -5,8 +5,7 @@ import Products from './components/Products';
 export default function App() {
   return (
     <div>
-      hypebeast app
-      <h1>Hello World</h1>
+      <h1>Cryptic-$neeks</h1>
       <nav
         style={{
           borderBottom: 'solid 1px',
