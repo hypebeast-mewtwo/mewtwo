@@ -22,3 +22,8 @@ body {
   flex-direction: column;
   flex: none;
 }
+.card-img-top {
+  object-fit: contain;
+  width: 498px;
+  height: 332px;
+}
