@@ -6,7 +6,7 @@
   "scripts": {
     "start:gateway": "nodemon ./gateway/index.ts",
     "start:user": "nodemon ./services/userService/userServer.ts",
-    "start:inventory": "nodemon ./services/inventoryService/InventoryServer.ts",
+    "start:inventory": "nodemon ./services/inventoryService/inventoryServer.ts",
     "start:dev": "webpack serve --mode development",
     "start:review": "nodemon ./services/reviewService/reviewServer.ts",
     "start:payment": "nodemon ./services/paymentService/paymentServer.ts",
