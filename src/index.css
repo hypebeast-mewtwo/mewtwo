@@ -1,6 +1,8 @@
 body {
   background-color: bisque;
   box-sizing: border-box;
+  margin-left: 2%;
+  margin-right: 2%;
 }
 
 .container {
